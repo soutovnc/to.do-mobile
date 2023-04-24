@@ -6,6 +6,7 @@ export default function App() {
     <View style={styles.container}>
       <StatusBar
         barStyle="light-content"
+        hidden
         backgroundColor="transparent"
         translucent
       />
@@ -17,7 +18,6 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
   },
