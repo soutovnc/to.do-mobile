@@ -16,10 +16,11 @@ export const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   input: {
-    // flex: 1,
+    flex: 1,
     height: 54,
     width: 271,
     backgroundColor: '#262626',
+    color: '#FFF',
     borderRadius: 6,
     padding: 16,
     flexGrow: 1,
@@ -47,4 +48,7 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     //caution with margin here, because I use at input and button
   },
+  list: {
+    marginTop: 39,
+  }
 })

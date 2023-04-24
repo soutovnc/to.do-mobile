@@ -1,15 +1,20 @@
 import { useState } from 'react'
 
-import { Alert, Image, Text, TextInput, TouchableOpacity, View } from "react-native";
+import { Alert, FlatList, Image, Text, TextInput, TouchableOpacity, View } from "react-native";
 import { AntDesign } from '@expo/vector-icons';
 
 import { styles } from './styles'
+import { Task } from '../../components/Tasks';
 
 export default function Home() {
   const [tasks, setTasks] = useState<string[]>([])
   const [taskName, setTaskName] = useState('')
 
   function handleAddTask() {
+    // if (tasks.includes(taskName)) {
+    //   return Alert.alert("Tarefa já listada", "Já existe uma tarefa na lista com esta nome")
+    // }
+
     setTasks(prevState => [...prevState, taskName])
     setTaskName('')
   }
@@ -43,10 +48,26 @@ export default function Home() {
           />
           <TouchableOpacity
             style={styles.button}
+            onPress={handleAddTask}
           >
             <AntDesign name="pluscircleo" size={16} color="white"/>
           </TouchableOpacity>
         </View>
+
+          <FlatList
+            data={tasks}
+            style={styles.list}
+            keyExtractor={item => item}
+            renderItem={({ item }) => (
+              <Task
+                key={item}
+                name={item}
+                onRemove={() => handleRemoveTask(item)}
+              />
+            )}
+            showsVerticalScrollIndicator={false}
+
+          />
 
       </View>
 
