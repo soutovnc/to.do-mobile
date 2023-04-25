@@ -7,6 +7,7 @@ import uuid from 'react-native-uuid'
 import { styles } from './styles'
 import { Task } from '../../components/Tasks';
 import { ListEmpty } from '../../components/ListEmpty';
+import { TaskCounter } from '../../components/TaskCounter';
 
 
 // type Props = {
@@ -60,6 +61,11 @@ export default function Home() {
     }))
   }
 
+  const finishCount = tasks.reduce((count, task) => {
+    if (task.isDone) count++;
+
+    return count;
+  }, 0)
 
   return (
     <>
@@ -84,7 +90,7 @@ export default function Home() {
             <AntDesign name="pluscircleo" size={16} color="white"/>
           </TouchableOpacity>
         </View>
-
+        <TaskCounter createdCount={tasks.length} finishCount={finishCount}/>
         <FlatList
           data={tasks}
           style={styles.list}

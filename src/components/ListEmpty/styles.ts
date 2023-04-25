@@ -3,10 +3,12 @@ import { StyleSheet } from "react-native";
 export const styles = StyleSheet.create({
   container: {
     marginTop: 20,
+    marginLeft: 28,
+    width: 327,
     borderTopColor: '#333333',
     borderTopWidth: 1,
     alignItems: 'center',
-    fontFamily: 'Inter-Regular'
+    fontFamily: 'Inter-Regular',
   },
   image: {
     marginTop: 48,

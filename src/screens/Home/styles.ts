@@ -51,6 +51,6 @@ export const styles = StyleSheet.create({
     //caution with margin here, because I use at input and button
   },
   list: {
-    marginTop: 39,
+    marginTop: 20,
   }
 })
