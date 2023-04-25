@@ -5,6 +5,7 @@ export const styles = StyleSheet.create({
     flex: 1,
     width: '100%',
     backgroundColor: '#1A1A1A',
+    fontFamily: 'Inter-Regular',
   },
   header: {
     width: '100%',
@@ -30,6 +31,7 @@ export const styles = StyleSheet.create({
     fontSize: 16,
     marginLeft: 24,
     marginTop: 142,
+    fontFamily: 'Inter-Regular',
   },
   button: {
     height: 52,
@@ -41,7 +43,7 @@ export const styles = StyleSheet.create({
     padding: 18,
     marginTop: 142,
     marginRight: 24,
-    marginLeft: 4
+    marginLeft: 4,
   },
   inputComponent: {
     width: '100%',

@@ -1,5 +1,5 @@
 import { Text, TouchableOpacity, View } from "react-native";
-import { EvilIcons, Entypo } from '@expo/vector-icons';
+import { EvilIcons, AntDesign, Entypo } from '@expo/vector-icons';
 
 import { styles } from "./styles";
 import { TaskProps } from "src/screens/Home";
@@ -26,14 +26,16 @@ export function Task({ task, onRemove, onCheckChanged }: Props) {
       <View style={styles.checkboxContainer}>
         {task.isDone ? (
           <View style={{ ...styles.checkbox, ...styles.checked }}>
-            <Entypo name="circle" size={24} color="#F2F2F2"/>
+            <AntDesign name="checkcircle" size={20} color="#5E60CE"/>
           </View>
 
         ) : (
-          <View style={{ ...styles.checkbox, ...styles.unchecked }}/>
+          <View style={{ ...styles.checkbox, ...styles.unchecked }}>
+            <Entypo name="circle" size={20} color="#4EA8DE"/>
+          </View>
         )}
 
-        <Text style={styles.name}>
+        <Text style={task.isDone ? styles.textCheck : styles.text}>
           { task.title }
         </Text>
       </View>

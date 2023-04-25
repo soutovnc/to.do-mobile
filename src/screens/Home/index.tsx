@@ -6,6 +6,7 @@ import uuid from 'react-native-uuid'
 
 import { styles } from './styles'
 import { Task } from '../../components/Tasks';
+import { ListEmpty } from '../../components/ListEmpty';
 
 
 // type Props = {
@@ -83,25 +84,27 @@ export default function Home() {
             <AntDesign name="pluscircleo" size={16} color="white"/>
           </TouchableOpacity>
         </View>
-{/*
-          <FlatList
-            data={tasks}
-            style={styles.list}
-            // keyExtractor={task => task}
-            renderItem={({ task }) => (
-              <Task
-                key={task.id}
-                name={task}
-                // onRemove={() => handleRemoveTask(item)}
-                onRemove={() => handleRemoveTask}
-                onCheckChanged={handleCheckTask}
-              />
-            )}
-            showsVerticalScrollIndicator={false}
 
-          /> */}
+        <FlatList
+          data={tasks}
+          style={styles.list}
+          keyExtractor={item => item.id}
+          renderItem={({ item }) => (
+            <Task
+              key={item.id}
+              task={item}
+              // onRemove={() => handleRemoveTask(item)}
+              onRemove={handleRemoveTask}
+              onCheckChanged={handleCheckTask}
+            />
+          )}
+          showsVerticalScrollIndicator={false}
+          ListEmptyComponent={() => (
+            <ListEmpty />
+        )}
+        />
 
-        {Boolean(tasks.length) ? (
+        {/* {Boolean(tasks.length) ? (
           <View style={styles.list}>
             {tasks.map(task => (
               <Task
@@ -114,7 +117,7 @@ export default function Home() {
           </View>
         ) : (
             <Text></Text>
-        )}
+        )} */}
 
       </View>
 
