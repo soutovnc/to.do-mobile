@@ -45,6 +45,8 @@ export default function Home() {
             style={styles.input}
             placeholder="Adicione uma nova tarefa"
             placeholderTextColor="#808080"
+            onChangeText={setTaskName}
+            value={taskName}
           />
           <TouchableOpacity
             style={styles.button}
