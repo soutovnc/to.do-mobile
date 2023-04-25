@@ -2,35 +2,63 @@ import { useState } from 'react'
 
 import { Alert, FlatList, Image, Text, TextInput, TouchableOpacity, View } from "react-native";
 import { AntDesign } from '@expo/vector-icons';
+import uuid from 'react-native-uuid'
 
 import { styles } from './styles'
 import { Task } from '../../components/Tasks';
 
+
+// type Props = {
+//   name: string;
+//   onRemove: () => void;
+//   onCheckChanged: (name: string) => void;
+// }
+
+export interface TaskProps {
+  id: string;
+  title: string;
+  isDone: boolean;
+}
+
 export default function Home() {
-  const [tasks, setTasks] = useState<string[]>([])
+  const [tasks, setTasks] = useState<TaskProps[]>([])
   const [taskName, setTaskName] = useState('')
 
   function handleAddTask() {
-    // if (tasks.includes(taskName)) {
-    //   return Alert.alert("Tarefa já listada", "Já existe uma tarefa na lista com esta nome")
-    // }
+    if (!taskName.trim()) return
 
-    setTasks(prevState => [...prevState, taskName])
+    const newTask = {
+      id: uuid.v4() as string,
+      title: taskName,
+      isDone: false,
+    }
+
+    setTasks(prevState => [...prevState, newTask])
     setTaskName('')
   }
 
-  function handleRemoveTask(name: string) {
-    Alert.alert("Excluir", `Excluir a tarefa ${name}?`, [
-      {
-        text: 'Sim',
-        onPress: () => setTasks(prevState => prevState.filter(task => task !== name))
-      },
-      {
-        text: 'Não',
-        style: 'cancel'
-      }
-    ])
+  function handleRemoveTask(id: string) {
+    // Alert.alert("Excluir", `Excluir a tarefa ${name}?`, [
+    //   {
+    //     text: 'Sim',
+    //     onPress: () => setTasks(prevState => prevState.filter(task => task !== name))
+    //   },
+    //   {
+    //     text: 'Não',
+    //     style: 'cancel'
+    //   }
+    // ])
+    setTasks(prevState => prevState.filter(task => task.id !== id))
+    }
+
+  function handleCheckTask(id: string) {
+    setTasks(state => state.map(task => {
+      if (task.id === id) return { ...task, isDone: !task.isDone }
+
+      return task;
+    }))
   }
+
 
   return (
     <>
@@ -55,21 +83,38 @@ export default function Home() {
             <AntDesign name="pluscircleo" size={16} color="white"/>
           </TouchableOpacity>
         </View>
-
+{/*
           <FlatList
             data={tasks}
             style={styles.list}
-            keyExtractor={item => item}
-            renderItem={({ item }) => (
+            // keyExtractor={task => task}
+            renderItem={({ task }) => (
               <Task
-                key={item}
-                name={item}
-                onRemove={() => handleRemoveTask(item)}
+                key={task.id}
+                name={task}
+                // onRemove={() => handleRemoveTask(item)}
+                onRemove={() => handleRemoveTask}
+                onCheckChanged={handleCheckTask}
               />
             )}
             showsVerticalScrollIndicator={false}
 
-          />
+          /> */}
+
+        {Boolean(tasks.length) ? (
+          <View style={styles.list}>
+            {tasks.map(task => (
+              <Task
+                key={task.id}
+                task={task}
+                onCheckChanged={handleCheckTask}
+                onRemove={handleRemoveTask}
+              />
+            ))}
+          </View>
+        ) : (
+            <Text></Text>
+        )}
 
       </View>
 
