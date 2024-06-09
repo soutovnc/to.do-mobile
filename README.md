@@ -32,9 +32,9 @@ Even though there were few features, I practiced concepts such as:
 
 And the result achieved was:
 
-<p>
-  <img alt="Task list void" src="./src/assets/task-list-void.png" width="50%" />
-  <img alt="Task list" src="./src/assets/task-list.png" width="50%" />
+<p align="center">
+  <img alt="Task list void" src="./src/assets/task-list-void.png" width="25%" />
+  <img alt="Task list" src="./src/assets/task-list.png" width="25%" />
 </p>
 
 ## :gear: If you want testing
